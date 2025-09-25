@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Logo - RynEditor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo-container {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #4a9eff;
+            border-radius: 10px;
+            background-color: #262626;
+        }
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin: 10px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #22c55e;
+            color: white;
+        }
+        .error {
+            background-color: #f87171;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Logo - RynEditor</h1>
+    
+    <div class="logo-container">
+        <h2>Logo desde ruta relativa:</h2>
+        <img src="./logo.png" alt="Logo RynEditor" class="logo" id="logo1">
+        <div id="status1" class="status">Cargando...</div>
+    </div>
+    
+    <div class="logo-container">
+        <h2>Logo desde ruta absoluta:</h2>
+        <img src="/logo.png" alt="Logo RynEditor" class="logo" id="logo2">
+        <div id="status2" class="status">Cargando...</div>
+    </div>
+    
+    <div class="logo-container">
+        <h2>Favicon:</h2>
+        <img src="./favicon.png" alt="Favicon RynEditor" class="logo" id="favicon">
+        <div id="status3" class="status">Cargando...</div>
+    </div>
+
+    <script>
+        // Verificar carga de imágenes
+        function checkImageLoad(imgId, statusId) {
+            const img = document.getElementById(imgId);
+            const status = document.getElementById(statusId);
+            
+            img.onload = function() {
+                status.textContent = '✅ Cargado correctamente';
+                status.className = 'status success';
+            };
+            
+            img.onerror = function() {
+                status.textContent = '❌ Error al cargar';
+                status.className = 'status error';
+            };
+        }
+        
+        // Verificar todas las imágenes
+        checkImageLoad('logo1', 'status1');
+        checkImageLoad('logo2', 'status2');
+        checkImageLoad('favicon', 'status3');
+        
+        // Información adicional
+        console.log('Archivos disponibles:');
+        console.log('- logo.png:', window.location.origin + '/logo.png');
+        console.log('- favicon.png:', window.location.origin + '/favicon.png');
+        console.log('- manifest.json:', window.location.origin + '/manifest.json');
+    </script>
+</body>
+</html>
+
